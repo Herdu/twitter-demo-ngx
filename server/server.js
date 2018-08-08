@@ -1,6 +1,14 @@
 const express = require('express');
 const Twitter = require('twitter');
-const config = require('./config');
+let config = {};
+const fs = require('fs');
+
+if (fs.existsSync('./config.js')) {
+  config = require('./config');
+} else {
+  throw "Config file required!!!";
+}
+
 const app = express();
 
 const port = config.applicationPort;
@@ -12,9 +20,16 @@ const client = new Twitter({
   access_token_secret: config.accessTokenSecret
 });
 
+app.use(function(req, res, next) {
+  //allow CORS
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.setHeader('Content-Type', 'application/json');
+  next();
+});
+
 
 app.get('/tweets/', (request, res) => {
-  res.setHeader('Content-Type', 'application/json');
   let params = request.query;
   if(!params.q) {
     res.status(400);

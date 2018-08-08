@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Tweet} from "../../interface/Tweet";
 
 @Component({
   selector: 'app-tweet',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tweet.component.scss']
 })
 export class TweetComponent implements OnInit {
+  @Input('tweet') tweet: Tweet;
 
   constructor() { }
 
   ngOnInit() {
   }
-
 }

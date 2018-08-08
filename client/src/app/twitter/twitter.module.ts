@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './list/list.component';
 import { TweetComponent } from './list/tweet/tweet.component';
 import {SharedModule} from "../shared/shared.module";
+import {HttpClientModule} from "@angular/common/http";
+import {TwitterService} from "./service/twitter.service";
 
 const twitterRoutes: Routes = [
   { path: '', component: ListComponent },
@@ -16,6 +18,7 @@ const twitterRoutes: Routes = [
     RouterModule.forChild(twitterRoutes),
     SharedModule
   ],
-  declarations: [ListComponent, TweetComponent]
+  declarations: [ListComponent, TweetComponent],
+  providers: [TwitterService]
 })
 export class TwitterModule { }

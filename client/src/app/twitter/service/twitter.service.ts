@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
+import {Observable} from "rxjs/index";
+import {ApiService} from "../../shared/service/api.service";
+import {TwitterModule} from "../twitter.module";
+import {Tweet} from "../interface/Tweet";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TwitterService {
-  private basePath = 'https://twitter.com/1.1/"';
-
-  private oAuth() {
-
+  constructor(private api: ApiService) {
   }
 
-
-
-  constructor() { }
+  public getTweets(params = {q: '@POTUS'}): Observable< Array<Tweet> > {
+    return this.api.get('tweets', params);
+  }
 }

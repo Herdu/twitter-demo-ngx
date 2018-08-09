@@ -1,0 +1,27 @@
+$profile_picture_size: 150px;
+
+
+.background {
+  height: 320px;
+  width: 100%;
+  display: block;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: visible;
+
+  .profile-picture {
+    display: block;
+    width: $profile_picture_size;
+    height: $profile_picture_size;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    left: 20px;
+    bottom: -20px;
+    border: solid white 5px;
+  }
+}
+
+

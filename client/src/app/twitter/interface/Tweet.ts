@@ -1,4 +1,4 @@
-interface TweetUser {
+export interface TweetUser {
   created_at: string,
   default_profile: boolean  | null,
   default_profile_image: false  | null,

@@ -1,0 +1,19 @@
+<form (submit)="submit()">
+  <mat-form-field appearance="standard">
+    <mat-label> Podaj nazwę kanału </mat-label>
+    <span matPrefix>@</span>
+    <input  matInput type="text" placeholder="POTUS" [formControl]="this.form.get('channel')">
+    <mat-hint *ngIf="!this.form.get('channel').valid"> Nazwa kanału</mat-hint>
+    <mat-error>Nazwa nie może pozostać pusta</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="standard">
+    <mat-label> Filtruj </mat-label>
+    <input  matInput type="text" placeholder="kot pies grzanka" [formControl]="this.form.get('filter')">
+    <mat-hint> Słowa kluczowe (możesz podać kilka oddzielając je spacją) </mat-hint>
+  </mat-form-field>
+
+  <button mat-button mat-raised-button>
+    Szukaj
+  </button>
+</form>

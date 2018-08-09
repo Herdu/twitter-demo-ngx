@@ -31,28 +31,36 @@ app.use(function(req, res, next) {
 
 app.get('/tweets/', (request, res) => {
   let params = request.query;
-  if(!params.q) {
+  if(!params.channel) {
     res.status(400);
-    res.send('Query params missing');
+    res.send('Channel name is missing!');
     return false;
   }
 
   twitterQueryParams = {
-    q: params.q,
-    count: 100 //max number of tweets per request
+    q: params.channel,
+    count: '1' //max number of tweets per request
   }
 
-  client.get('search/tweets.json', params, function(error, tweets, response) {
-
-
-    if (error) {
+  client.get('users/search',twitterQueryParams, function(error, data, response){
+    if(error || data.length < 1) {
       res.status(400);
-      res.send('Twitter api call error');
+      res.send('User not found');
       return false;
-
     } else {
-      res.send(tweets);
-      return true;
+      //get first user
+      userId = data[0].id_str;
+      client.get('statuses/user_timeline.json', {user_id: userId, count: '200'} , function(error, tweets, response) {
+        if (error) {
+          res.status(400);
+          res.send('User tweets not found');
+          return false;
+
+        } else {
+          res.send(tweets);
+          return true;
+        }
+      });
     }
   });
 });

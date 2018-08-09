@@ -6,6 +6,9 @@ import { TweetComponent } from './list/tweet/tweet.component';
 import {SharedModule} from "../shared/shared.module";
 import {HttpClientModule} from "@angular/common/http";
 import {TwitterService} from "./service/twitter.service";
+import { SearchComponent } from './list/search/search.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { TwitterUserComponent } from './list/twitter-user/twitter-user.component';
 
 const twitterRoutes: Routes = [
   { path: '', component: ListComponent },
@@ -16,9 +19,11 @@ const twitterRoutes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(twitterRoutes),
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  declarations: [ListComponent, TweetComponent],
+  declarations: [ListComponent, TweetComponent, SearchComponent, TwitterUserComponent],
   providers: [TwitterService]
 })
 export class TwitterModule { }

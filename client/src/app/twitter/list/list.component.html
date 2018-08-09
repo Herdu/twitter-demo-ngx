@@ -1,3 +1,9 @@
+<app-twitter-user *ngIf="twitterUser" [user]="twitterUser"></app-twitter-user>
+
+
+<app-search *ngIf="form" [form]="form" (search)="search($event)"></app-search>
+
+
 <mat-list *ngIf="tweets.length">
     <app-tweet mat-list-item *ngFor="let tweet of tweets" [tweet]="tweet"></app-tweet>
 </mat-list>

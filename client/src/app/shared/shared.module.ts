@@ -15,6 +15,7 @@ import { ToolbarComponent } from './ui/toolbar/toolbar.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import { PaginationComponent } from './ui/pagination/pagination.component';
+import { TwitterPipe } from './pipe/twitter.pipe';
 
 const AngularMaterialModules = [
   MatMenuModule,
@@ -38,12 +39,13 @@ const AngularMaterialModules = [
     RouterModule
     /* place any other elements here */
   ], ...AngularMaterialModules],
-  declarations: [LoaderComponent, SafePipe, ToolbarComponent, PaginationComponent],
+  declarations: [LoaderComponent, SafePipe, ToolbarComponent, PaginationComponent, TwitterPipe],
   exports: [ ...[
     LoaderComponent,
     SafePipe,
     ToolbarComponent,
-    PaginationComponent
+    PaginationComponent,
+    TwitterPipe
   ], ...AngularMaterialModules]
 })
 export class SharedModule { }

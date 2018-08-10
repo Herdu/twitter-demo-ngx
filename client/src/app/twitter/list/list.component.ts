@@ -51,6 +51,14 @@ export class ListComponent implements OnInit {
           this.tweets = resp;
           this.twitterUser = this.twitterService.tweetUser;
           this.totalNumberOfTweets = this.twitterService.currentTweets.length;
+
+          const maxPage = Math.ceil((this.totalNumberOfTweets / this.form.get('page').value));
+
+          if(this.form.get('page').value > maxPage) {
+            this.form.get('page').patchValue(maxPage);
+            this.search();
+          }
+
         }, err=>{},
         ()=>{
           this.loaded = true;

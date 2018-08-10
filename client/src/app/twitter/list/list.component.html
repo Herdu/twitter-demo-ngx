@@ -2,36 +2,44 @@
 
 <app-twitter-user *ngIf="twitterUser" [user]="twitterUser"></app-twitter-user>
 
+<div class="list-container" *ngIf="twitterUser">
+  <app-pagination
+    *ngIf="totalNumberOfTweets && this.form && form.get('pageSize')"
+    [length]="totalNumberOfTweets"
+    [pageSize]="form.get('pageSize').value"
+    [options]="pageSizeOptions"
+    [pageControl]="form.get('page')"
+    (page)="pageChanged($event)"
+  >
+  </app-pagination>
 
-<app-pagination
-  *ngIf="totalNumberOfTweets && this.form && form.get('pageSize')"
-  [length]="totalNumberOfTweets"
-  [pageSize]="form.get('pageSize').value"
-  [options]="pageSizeOptions"
-  [pageControl]="form.get('page')"
-  (page)="pageChanged($event)"
->
-</app-pagination>
+  <ng-container *ngIf="loaded && twitterUser">
+    <mat-list class="tweet-list" *ngIf="tweets.length">
+      <app-tweet mat-list-item *ngFor="let tweet of tweets" [tweet]="tweet"></app-tweet>
+    </mat-list>
 
-<ng-container *ngIf="loaded && twitterUser">
-  <mat-list class="tweet-list" *ngIf="tweets.length">
-    <app-tweet mat-list-item *ngFor="let tweet of tweets" [tweet]="tweet"></app-tweet>
-  </mat-list>
+    <p class="not-found" *ngIf="!tweets.length">
+      Tweets not found <mat-icon>sentiment_very_dissatisfied</mat-icon>
+    </p>
 
-  <p class="tweets-not-found" *ngIf="!tweets.length">
-    Tweets not found <mat-icon>sentiment_very_dissatisfied</mat-icon>
-  </p>
+  </ng-container>
 
-</ng-container>
+  <app-loader *ngIf="!loaded"></app-loader>
 
-<app-loader *ngIf="!loaded"></app-loader>
+  <app-pagination
+    *ngIf="totalNumberOfTweets && this.form && form.get('pageSize')"
+    [length]="totalNumberOfTweets"
+    [pageSize]="form.get('pageSize').value"
+    [options]="pageSizeOptions"
+    [pageControl]="form.get('page')"
+    (page)="pageChanged($event)"
+  >
+  </app-pagination>
+</div>
 
-<app-pagination
-  *ngIf="totalNumberOfTweets && this.form && form.get('pageSize')"
-  [length]="totalNumberOfTweets"
-  [pageSize]="form.get('pageSize').value"
-  [options]="pageSizeOptions"
-  [pageControl]="form.get('page')"
-  (page)="pageChanged($event)"
->
-</app-pagination>
+
+<app-loader *ngIf="!loaded && !twitterUser"></app-loader>
+
+<p class="not-found" *ngIf="loaded && !twitterUser">
+  User not found <mat-icon>sentiment_very_dissatisfied</mat-icon>
+</p>

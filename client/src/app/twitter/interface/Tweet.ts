@@ -33,7 +33,7 @@ export interface Tweet {
   id_str: string  | null,
   retweet_count: number | null,
   full_text: string,
-
+  entities: any | null,
   retweeted_status: {
     user: TweetUser,
     text: string,

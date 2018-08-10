@@ -44,6 +44,19 @@ $profile_picture_size: 150px;
     color: mat-color($primaryPalette);
   }
 
+  .stats {
+    display: inline-block;
+    color: mat-color($primaryPalette);
+    width: 80px;
+    text-align: center;
+    margin: 30px 10px 5px;
+    font-size: 22px;
+    span {
+      font-size: 16px;
+      display: block;
+      color: black;
+    }
+  }
 }
 
 

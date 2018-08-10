@@ -1,0 +1,29 @@
+@import './../../../variables';
+
+.home-container {
+  width: 100%;
+  min-height: calc(100vh - 64px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .inner-container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
+    width: 90%;
+
+
+    h2{
+      color: $secondaryColor;
+      padding: 5px;
+      margin-left: 5px;
+      margin-bottom: 15px;
+    }
+
+    app-browser {
+      width: 100%;
+    }
+  }
+
+}

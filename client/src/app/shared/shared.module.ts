@@ -9,6 +9,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule, MatButtonToggleModule, MatInputModule} from "@angular/material";
 import {MatIconModule} from '@angular/material/icon';
 import { FormErrorComponent } from './ui/form-error/form-error.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { LoaderComponent } from './ui/loader/loader.component';
+import { SafePipe } from './pipe/safe.pipe';
+import { ToolbarComponent } from './ui/toolbar/toolbar.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {RouterModule} from "@angular/router";
+import { PaginationComponent } from './ui/pagination/pagination.component';
 
 const AngularMaterialModules = [
   MatMenuModule,
@@ -20,17 +27,24 @@ const AngularMaterialModules = [
   MatInputModule,
   MatIconModule,
   MatButtonModule,
-  MatButtonToggleModule
+  MatButtonToggleModule,
+  MatProgressSpinnerModule
 ];
 
 @NgModule({
   imports: [ ...[
     CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    RouterModule
     /* place any other elements here */
   ], ...AngularMaterialModules],
-  declarations: [FormErrorComponent],
+  declarations: [LoaderComponent, SafePipe, ToolbarComponent, PaginationComponent],
   exports: [ ...[
-    /* place any other elements here */
+    LoaderComponent,
+    SafePipe,
+    ToolbarComponent,
+    PaginationComponent
   ], ...AngularMaterialModules]
 })
 export class SharedModule { }

@@ -8,7 +8,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 const appRoutes: Routes = [
-  { path: '', pathMatch: 'full', loadChildren: './twitter/twitter.module#TwitterModule' },
+  { path: '', loadChildren: './twitter/twitter.module#TwitterModule' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

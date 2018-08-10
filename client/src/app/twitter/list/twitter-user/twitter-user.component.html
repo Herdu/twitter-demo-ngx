@@ -1,10 +1,10 @@
 <div class="background"
      [style.backgroundImage]="'url(' + user.profile_banner_url + ')'"
-     [style.backgroundColor]="'#' + user.profile_background_color"
+     [style.backgroundColor]="'#' + (user.profile_background_color)"
 >
 
   <div class="profile-picture"
-    [style.backgroundImage]="'url(' + user.profile_image_url_https + ')'"
+    [style.backgroundImage]="'url(' + (user.profile_image_url_https || user.default_profile_image) + ')'"
     [style.borderColor]="'#' + user.profile "
        >
   </div>
@@ -14,4 +14,8 @@
 
 <div class="basic-info">
   {{user.name}}
+</div>
+
+<div class="screen-name">
+  @{{user.screen_name}}
 </div>

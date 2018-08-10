@@ -15,6 +15,5 @@ export class TwitterUserComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log(this.user);
   }
 }

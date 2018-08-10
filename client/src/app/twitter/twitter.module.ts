@@ -4,14 +4,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './list/list.component';
 import { TweetComponent } from './list/tweet/tweet.component';
 import {SharedModule} from "../shared/shared.module";
-import {HttpClientModule} from "@angular/common/http";
 import {TwitterService} from "./service/twitter.service";
-import { SearchComponent } from './list/search/search.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { TwitterUserComponent } from './list/twitter-user/twitter-user.component';
+import { HomeComponent } from './home/home.component';
+import { BrowserComponent } from './home/browser/browser.component';
 
 const twitterRoutes: Routes = [
-  { path: '', component: ListComponent },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'twitter', component: ListComponent , pathMatch: 'full'}
 ];
 
 
@@ -23,7 +24,7 @@ const twitterRoutes: Routes = [
     ReactiveFormsModule,
     FormsModule
   ],
-  declarations: [ListComponent, TweetComponent, SearchComponent, TwitterUserComponent],
+  declarations: [ListComponent, TweetComponent, TwitterUserComponent, HomeComponent, BrowserComponent],
   providers: [TwitterService]
 })
 export class TwitterModule { }

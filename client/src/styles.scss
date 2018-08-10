@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import "variables";
 
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
@@ -49,4 +49,26 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+html {
+  display: block;
+}
+
+html, body {
+  overflow: auto;
+}
+
+
+h1{
+  display: block;
+  color: mat-color($primaryPalette);
+  font-size: 60px;
+  font-weight: bold;
+}
+
+
+.mat-form-field-hint-wrapper {
+  overflow: visible;
+  white-space: normal;
 }

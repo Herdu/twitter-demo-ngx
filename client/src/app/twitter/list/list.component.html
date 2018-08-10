@@ -1,15 +1,32 @@
+<app-toolbar [form]="form" (search)="search($event)"></app-toolbar>
+
 <app-twitter-user *ngIf="twitterUser" [user]="twitterUser"></app-twitter-user>
 
 
-<app-search *ngIf="form" [form]="form" (search)="search($event)"></app-search>
+<app-pagination
+  *ngIf="totalNumberOfTweets && this.form && this.form.get('pageSize')"
+  [length]="totalNumberOfTweets"
+  [pageSize]="form.get('pageSize').value"
+  [options]="pageSizeOptions"
+  (page)="pageChanged($event)"
+>
+</app-pagination>
 
-
-<mat-list *ngIf="tweets.length">
+<ng-container *ngIf="loaded">
+  <mat-list class="tweet-list" *ngIf="tweets.length">
     <app-tweet mat-list-item *ngFor="let tweet of tweets" [tweet]="tweet"></app-tweet>
-</mat-list>
+  </mat-list>
+</ng-container>
+
+<app-loader *ngIf="!loaded"></app-loader>
 
 
-<mat-paginator [length]="length"
-               [pageSize]="pageSize"
-               (page)="pageChanged($event)">
-</mat-paginator>
+
+<app-pagination
+  *ngIf="totalNumberOfTweets && this.form && this.form.get('pageSize')"
+  [length]="totalNumberOfTweets"
+  [pageSize]="form.get('pageSize').value"
+  [options]="pageSizeOptions"
+  (page)="pageChanged($event)"
+>
+</app-pagination>

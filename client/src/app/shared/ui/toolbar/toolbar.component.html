@@ -1,0 +1,29 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <mat-toolbar-row [ngClass]="form ? 'row-with-form' : ''">
+    <a [routerLink]="['/']" routerLinkActive="active" class="title">{{title}}</a>
+
+    <ng-container *ngIf="form" class="row-with-form">
+      <form (submit)="submit()">
+        <mat-form-field appearance="standard">
+          <mat-label> Channel name </mat-label>
+          <span matPrefix>@</span>
+          <input  matInput type="text" placeholder="POTUS" [formControl]="form.get('channel')">
+          <mat-error>Wrong value</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard">
+          <mat-label> Filter </mat-label>
+          <input  matInput type="text" placeholder="space nasa" [formControl]="form.get('filter')">
+          <mat-hint> Key words </mat-hint>
+          <mat-error>Wrong value</mat-error>
+        </mat-form-field>
+
+        <button mat-button mat-raised-button>
+          Search
+        </button>
+      </form>
+    </ng-container>
+
+
+  </mat-toolbar-row>
+</mat-toolbar>

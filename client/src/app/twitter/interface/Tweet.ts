@@ -32,7 +32,7 @@ export interface Tweet {
   favourite_count: number  | null,
   id_str: string  | null,
   retweet_count: number | null,
-  text: string,
+  full_text: string,
 
   retweeted_status: {
     user: TweetUser,

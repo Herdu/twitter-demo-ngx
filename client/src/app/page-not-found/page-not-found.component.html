@@ -1,5 +1,11 @@
-<img class="image" src="assets/image/not-found.jpg">
+<app-toolbar></app-toolbar>
+<div class="not-found-container">
+  <h1>
+    404 - Page not found
+  </h1>
+  <img class="image" src="assets/image/not-found.jpg">
 
-<p>
-  page-not-found works!
-</p>
+  <a mat-button mat-raised-button [routerLink]="['/']" >
+    Back to browser
+  </a>
+</div>

@@ -1,12 +1,17 @@
 const express = require('express');
 const Twitter = require('twitter');
-let config = {};
+var config = {};
 const fs = require('fs');
 
 if (fs.existsSync('./config.js')) {
   config = require('./config');
 } else {
-  throw "Config file required!!!";
+  config = {
+    consumerKey: '--- consumer key ---',
+    consumerSecret: '--- consumer secret ---',
+    accesToken: '--- access token ---',
+    accessTokenSecret: '--- access token secret ---'
+  };
 }
 
 const app = express();
@@ -20,8 +25,8 @@ const client = new Twitter({
   access_token_secret: config.accessTokenSecret
 });
 
-app.use(function(req, res, next) {
-  //allow CORS
+app.use((req, res, next) => {
+  //allow CORS. Change on prod.
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.setHeader('Content-Type', 'application/json');
@@ -30,19 +35,19 @@ app.use(function(req, res, next) {
 
 
 app.get('/tweets/', (request, res) => {
-  let params = request.query;
+  var params = request.query;
   if(!params.channel) {
     res.status(400);
     res.send('Channel name is missing!');
     return false;
   }
 
-  twitterQueryParams = {
+  searchUserQueryParams = {
     q: params.channel,
     count: '1' //max number of tweets per request
-  }
+  };
 
-  client.get('users/search',twitterQueryParams, function(error, data, response){
+  client.get('users/search', searchUserQueryParams, (error, data, response) => {
     if(error || data.length < 1) {
       res.status(400);
       res.send('User not found');
@@ -50,7 +55,11 @@ app.get('/tweets/', (request, res) => {
     } else {
       //get first user
       userId = data[0].id_str;
-      client.get('statuses/user_timeline.json', {user_id: userId, count: '200'} , function(error, tweets, response) {
+      client.get('statuses/user_timeline.json', {
+        user_id: userId,
+        count: '200',
+        tweet_mode: 'extended'
+      } , (error, tweets, response) => {
         if (error) {
           res.status(400);
           res.send('User tweets not found');

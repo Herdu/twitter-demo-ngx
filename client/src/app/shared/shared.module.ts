@@ -8,7 +8,6 @@ import {MatListModule} from '@angular/material/list';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule, MatButtonToggleModule, MatInputModule} from "@angular/material";
 import {MatIconModule} from '@angular/material/icon';
-import { FormErrorComponent } from './ui/form-error/form-error.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoaderComponent } from './ui/loader/loader.component';
 import { SafePipe } from './pipe/safe.pipe';

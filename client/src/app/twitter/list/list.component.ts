@@ -3,6 +3,7 @@ import {TwitterService} from "../service/twitter.service";
 import {Tweet, TweetUser} from "../interface/Tweet";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list',
@@ -37,15 +38,9 @@ export class ListComponent implements OnInit {
   }
 
   pageChanged(event) {
-    const oldPageSize = this.form.get('pageSize').value;
-    if(event.pageSize !== oldPageSize) {
-      this.form.get('pageSize').patchValue(event.pageSize);
-      this.form.get('page').patchValue(1);
-    } else {
-      this.form.get('page').patchValue(event.pageIndex);
-    }
-
-    this.loadData();
+    this.form.get('pageSize').patchValue(event.pageSize);
+    this.form.get('page').patchValue(event.pageIndex + 1);
+    this.search(null);
   }
 
 
@@ -55,7 +50,7 @@ export class ListComponent implements OnInit {
       this.twitterService.getTweets(this.form.value).subscribe(resp=> {
           this.tweets = resp;
           this.twitterUser = this.twitterService.tweetUser;
-          this.totalNumberOfTweets = this.twitterService.tweets.length;
+          this.totalNumberOfTweets = this.twitterService.currentTweets.length;
         }, err=>{},
         ()=>{
           this.loaded = true;

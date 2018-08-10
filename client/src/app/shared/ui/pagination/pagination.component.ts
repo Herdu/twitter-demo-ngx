@@ -10,7 +10,9 @@ export class PaginationComponent implements OnInit {
   @Input('pageSize') pageSize: number;
   @Input('length') length: number;
   @Input('options') options: any;
+  @Input('pageControl') pageControl: FormControl;
   @Output('page') output = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit() {

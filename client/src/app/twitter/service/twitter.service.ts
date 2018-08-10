@@ -9,7 +9,7 @@ export class TwitterService {
   tweetUser: TweetUser = null;
   tweets: Array<Tweet> = [];
   lastChannel: string = null;
-
+  currentTweets: Array<Tweet> = [];
 
   constructor(private api: ApiService) {
   }
@@ -29,6 +29,8 @@ export class TwitterService {
         return false;
       });
     }
+
+    this.currentTweets = filteredList;
 
 
     //paginations

@@ -56,7 +56,7 @@ export class ListComponent implements OnInit {
 
           if(this.form.get('page').value > maxPage) {
             this.form.get('page').patchValue(maxPage);
-            this.search();
+            this.search(null);
           }
 
         }, err=>{},
